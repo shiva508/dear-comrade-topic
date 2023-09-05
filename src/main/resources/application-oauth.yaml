@@ -1,0 +1,22 @@
+server:
+  port: 8084
+spring:
+  application:
+    name: dear-comrade-topic
+  security:
+    oauth2:
+      client:
+        registration:
+          dear:
+            provider: spring
+            clientId: client
+            clientSecret: secret
+            authorizationGrantType: authorization_code
+            clientAuthenticationMethod: client_secret_basic
+            redirectUri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            scope:
+              - "user.read"
+              - "openid"
+        provider:
+          spring:
+            issuerUri: "http://localhost:8040"

@@ -1,0 +1,42 @@
+version: "3.7"
+services:
+  zipkin:
+    container_name: zipkin
+    image: openzipkin/zipkin
+    ports:
+      - "9411:9411"
+  dear_comared_cloud_config:
+    container_name: dear_comared_cloud_config
+    build:
+      context: ./dear_comared_cloud_config
+      dockerfile: Dockerfile
+    ports:
+      - "8888:8888"
+  dear_comared_dicovery:
+    container_name: dear_comared_dicovery
+    build:
+      context: ./dear_comared_dicovery
+      dockerfile: Dockerfile
+    ports:
+      - "8761:8761"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    depends_on:
+      - dear_comared_cloud_config
+  dear_comared_cloud_gateway:
+    container_name: dear_comared_cloud_gateway
+    build:
+      context: ./dear_comared_cloud_gateway
+      dockerfile: Dockerfile
+    ports:
+      - "9999:9999"
+    depends_on:
+      - dear_comared_cloud_config
+      - dear_comared_dicovery
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - eureka.client.service-url.defaultZone=http://dear_comared_dicovery:8761/eureka
+
+
+
+
