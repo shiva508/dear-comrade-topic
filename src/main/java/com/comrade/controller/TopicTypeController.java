@@ -5,6 +5,8 @@ import com.comrade.model.CommonResponse;
 import com.comrade.model.TopicTypeModel;
 import com.comrade.service.TopicTypeService;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -19,8 +21,9 @@ public class TopicTypeController {
     }
 
     @PostMapping("/save")
-    public TopicTypeEntity save(@Valid @RequestBody TopicTypeModel topicTypeModel){
-        return topicTypeService.save(topicTypeModel);
+    public ResponseEntity<TopicTypeEntity>  save(@Valid @RequestBody TopicTypeModel topicTypeModel){
+        TopicTypeEntity topicTypeEntity= topicTypeService.save(topicTypeModel);
+        return new ResponseEntity<>(topicTypeEntity, HttpStatus.CREATED);
     }
 
     @GetMapping("/all")

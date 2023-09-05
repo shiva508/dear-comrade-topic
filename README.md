@@ -9,3 +9,5 @@
 ### ./gradlew build (test+bootJar)
 ## Creating Jar
 ### ./gradlew bootJar
+## Run tests
+### ./gradlew test --tests TrackTypeValidationTest
