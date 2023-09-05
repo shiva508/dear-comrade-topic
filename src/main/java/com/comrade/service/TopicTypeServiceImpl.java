@@ -31,6 +31,7 @@ public class TopicTypeServiceImpl implements TopicTypeService{
     @Override
     @Transactional
     public List<TopicTypeEntity> getAll() {
+
         return topicTypeRepository.findAll();
     }
 
