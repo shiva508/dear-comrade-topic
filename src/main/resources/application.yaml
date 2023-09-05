@@ -14,6 +14,7 @@ spring:
     password: comrade
 #    url: jdbc:postgresql://172.19.0.2:5432/dear_comrade
     url: jdbc:postgresql://localhost:5432/dear_comrade
+    driver-class-name: org.postgresql.Driver
     hikari:
       connection-timeout: 2000
       maximum-pool-size: 5
