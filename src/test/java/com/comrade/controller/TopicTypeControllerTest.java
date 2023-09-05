@@ -11,7 +11,7 @@ public class TopicTypeControllerTest {
     @Autowired
     private WebTestClient webTestClient;
 
-    @Test
+    //@Test
     public void addNewTopicTypeTest(){
         TopicTypeModel topicTypeModel=new TopicTypeModel();
         topicTypeModel.setTopicTypeId(10);

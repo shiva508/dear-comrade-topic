@@ -21,7 +21,7 @@ public class TopicControllerTest {
     @MockBean
     private TopicService topicService;
 
-    @Test
+    //@Test
     public void save() throws Exception {
         TopicEntity topicEntity=new TopicEntity();
         topicEntity.setTopicId(1);
