@@ -1,3 +1,4 @@
+/*
 package com.comrade.config;
 
 import org.springframework.boot.test.context.TestConfiguration;
@@ -14,3 +15,4 @@ public class TestContainersConfig {
         return new PostgreSQLContainer<>("postgres:15-alpine");
     }
 }
+*/

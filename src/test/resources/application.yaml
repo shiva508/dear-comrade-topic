@@ -1,0 +1,48 @@
+server:
+  port: 8084
+  tomcat:
+    connection-timeout: 2s
+    keep-alive-timeout: 15s
+    threads:
+      min-spare: 5
+      max: 50
+spring:
+  application:
+    name: dear-comrade-topic
+  datasource:
+    username: dear
+    password: comrade
+    url: jdbc:tc:postgresql:14.4:///
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      connection-timeout: 2000
+      maximum-pool-size: 5
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+      show-sql: true
+
+web:
+  cors:
+    allowed-origins:
+      - "http://localhost:4200"
+    allowed-methods:
+      - GET
+      - POST
+      - PATCH
+      - PUT
+      - DELETE
+      - OPTIONS
+      - HEAD
+    max-age: 3600
+    allowed-headers:
+      - "Requestor-Type"
+    exposed-headers:
+      - "X-Get-Header"
+    add-mapping:
+      - "/**"
+
+

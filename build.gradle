@@ -22,7 +22,7 @@ repositories {
 }
 
 ext {
-	set('testcontainers.version', "1.18.3")
+	set('testcontainersVersion', "1.18.3")
 }
 
 dependencies {
@@ -48,5 +48,21 @@ tasks.named('test') {
 		events = ["PASSED", "FAILED", "SKIPPED"]
 		showStandardStreams = true
 		exceptionFormat = "full"
+	}
+}
+bootBuildImage {
+	imageName = "dasari508201/${project.name}:0.0.2"
+	environment = ["BP_JVM_VERSION" : "17.*"]
+	docker {
+		publishRegistry {
+			username = project.findProperty("registryUsername")
+			password = project.findProperty("registryToken")
+			url = project.findProperty("registryUrl")
+		}
+	}
+}
+dependencyManagement {
+	imports {
+		mavenBom "org.testcontainers:testcontainers-bom:${testcontainersVersion}"
 	}
 }

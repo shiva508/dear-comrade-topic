@@ -1,0 +1,36 @@
+version: "3.8"
+volumes:
+  comrade-postgres:
+services:
+  dear-comrade-topic:
+    container_name: dear-comrade-topic-new
+    depends_on:
+      - "comrade-postgres"
+    image: "dasari508201/dear-comrade-topic:0.0.1"
+    ports:
+      - "8084:8084"
+    environment:
+      - BPL_JVM_THREAD_COUNT=50
+      - BPL_DEBUG_PORT=8084  # debug
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://comrade-postgres:5432/dear_comrade
+      - SPRING_PROFILES_ACTIVE=dev
+    network_mode: comrade
+
+  comrade-postgres:
+    container_name: "comrade-postgres"
+    image: "postgres:latest"
+    environment:
+      - POSTGRES_DB=dear_comrade
+      - POSTGRES_PASSWORD=comrade
+      - POSTGRES_USER= dear
+    ports:
+      - "5432:5432"
+    volumes:
+      - comrade-postgres:/data/postgres
+#    restart: unless-stopped
+    network_mode: comrade
+networks:
+  comrade:
+
+
+
