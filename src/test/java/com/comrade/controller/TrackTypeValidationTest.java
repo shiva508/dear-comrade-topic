@@ -16,7 +16,7 @@ public class TrackTypeValidationTest {
         validator=validatorFactory.getValidator();
     }
 
-    //@Test
+    @Test
     public void whenAllFieldsHasValidData(){
         TopicTypeModel topicTypeModel=new TopicTypeModel();
         topicTypeModel.setTopicTypeId(10);
@@ -25,7 +25,7 @@ public class TrackTypeValidationTest {
         Assertions.assertThat(violations).isEmpty();
     }
 
-   // @Test
+    @Test
     public void whenAllFieldsHasInValidData(){
         TopicTypeModel topicTypeModel=new TopicTypeModel();
         topicTypeModel.setTopicTypeId(10);
